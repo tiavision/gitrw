@@ -15,6 +15,7 @@ use packreader::PackReader;
 use rayon::prelude::{ParallelBridge, ParallelIterator};
 use refs::GitRef;
 use rs_sha1::{HasherContext, Sha1Hasher};
+use rustc_hash::FxBuildHasher;
 use shared::ObjectHash;
 
 mod commits;
@@ -193,7 +194,7 @@ impl Repository {
         rewritten_commits: HashMap<
             CommitHash,
             CommitHash,
-            std::hash::BuildHasherDefault<rustc_hash::FxHasher>,
+            FxBuildHasher,
         >,
         dry_run: bool,
     ) {

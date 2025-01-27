@@ -17,7 +17,7 @@ use gitrwlib::{
 };
 use rayon::prelude::*;
 use regex::bytes::RegexSet;
-use rustc_hash::FxHashMap;
+use rustc_hash::{FxBuildHasher, FxHashMap};
 
 macro_rules! b {
     ( $x:expr ) => {
@@ -348,10 +348,10 @@ fn update_commit(
     rewritten_commits: &HashMap<
         CommitHash,
         CommitHash,
-        std::hash::BuildHasherDefault<rustc_hash::FxHasher>,
+        FxBuildHasher,
     >,
     rewritten_trees: &RwLock<
-        HashMap<TreeHash, Option<TreeHash>, std::hash::BuildHasherDefault<rustc_hash::FxHasher>>,
+        HashMap<TreeHash, Option<TreeHash>, FxBuildHasher>,
     >,
     dry_run: bool,
 ) -> (CommitHash, CommitHash) {
@@ -378,7 +378,7 @@ fn update_parents(
     rewritten_commits: &HashMap<
         CommitHash,
         CommitHash,
-        std::hash::BuildHasherDefault<rustc_hash::FxHasher>,
+        FxBuildHasher,
     >,
 ) {
     for (i, parent) in commit.parents().iter().enumerate() {

@@ -7,10 +7,10 @@ edition = "2021"
 
 [dependencies]
 hex = "0.4.3"
-memmap2 = "0.5.10"
+memmap2 = "0.9.5"
 bstr = "1.3.0"
-rustc-hash = "1.1.0"
-libdeflater = { version = "0.12.0", features = ["use_rust_alloc"] }
+rustc-hash = "2.1.0"
+libdeflater = { version = "1.23.0", features = ["use_rust_alloc"] }
 flate2 = { version = "1.0.25", default-features = false, features = ["default"] }
 rs_sha1 = "0.1.3"
 rayon = "1.7.0"

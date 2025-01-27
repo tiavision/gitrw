@@ -17,12 +17,12 @@ panic = "abort"
 
 [dependencies]
 hex = "0.4.3"
-memmap2 = "0.5.10"
+memmap2 = "0.9.5"
 bstr = "1.3.0"
-rustc-hash = "1.1.0"
+rustc-hash = "2.1.0"
 mimalloc = { version = "0.1.34", default-features = false }
 clap = { version = "4.1.8", features = ["derive"] }
-libdeflater = { version = "0.12.0", features = ["use_rust_alloc"] }
+libdeflater = { version = "1.23.0", features = ["use_rust_alloc"] }
 flate2 = { version = "1.0.25", default-features = false, features = ["default"] }
 rs_sha1 = "0.1.3"
 rayon = "1.7.0"

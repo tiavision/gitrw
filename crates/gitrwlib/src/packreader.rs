@@ -2,12 +2,11 @@ use core::panic;
 use std::error::Error;
 
 use std::fs::{self, File};
-use std::hash::BuildHasherDefault;
 use std::path::Path;
 use std::sync::{Arc, RwLock};
 
 use memmap2::Mmap;
-use rustc_hash::FxHashMap;
+use rustc_hash::{FxBuildHasher, FxHashMap};
 
 use crate::compression::Decompression;
 use crate::idx_reader::get_pack_offsets;
@@ -57,7 +56,7 @@ impl PackReader {
             let pack_offsets = get_pack_offsets(Path::new(&pack.idx_file)).unwrap();
             let offsets = Arc::new(RwLock::new(FxHashMap::with_capacity_and_hasher(
                 pack_offsets.len(),
-                BuildHasherDefault::default(),
+                FxBuildHasher::default(),
             )));
 
             for offset in pack_offsets.into_iter() {
