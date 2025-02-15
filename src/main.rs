@@ -54,6 +54,9 @@ enum Commands {
 
     /// Remove empty commits that are no merge commits
     PruneEmpty,
+
+    #[command(hide = true)]
+    MarkdownHelp,
 }
 
 #[derive(Subcommand)]
@@ -98,6 +101,10 @@ fn main() {
 
         Commands::PruneEmpty => {
             prune::remove_empty_commits(repository_path, cli.dry_run).unwrap();
+        },
+
+        Commands::MarkdownHelp => {
+            clap_markdown::print_help_markdown::<Cli>();
         }
     };
 }

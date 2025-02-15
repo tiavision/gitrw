@@ -31,9 +31,6 @@ CLI tool for reading and rewriting history information of a git repository
 
 * `-d`, `--dry-run` — Do not change the repository
 
-  Possible values: `true`, `false`
-
-
 
 
 ## `gitrw contributor`
@@ -45,7 +42,7 @@ Contributor related actions like list and rewrite
 ###### **Subcommands:**
 
 * `list` — Lists all authors and committers
-* `rewrite` — Allows to rewrite contributors
+* `rewrite` — Allows to rewrite contributors. Expects stdin input lines with the format: Old User <old@user.mail> = New User <new@user.mail>
 
 
 
@@ -59,13 +56,9 @@ Lists all authors and committers
 
 ## `gitrw contributor rewrite`
 
-Allows to rewrite contributors
+Allows to rewrite contributors. Expects stdin input lines with the format: Old User <old@user.mail> = New User <new@user.mail>
 
-**Usage:** `gitrw contributor rewrite <MAPPING_FILE>`
-
-###### **Arguments:**
-
-* `<MAPPING_FILE>` — Format inside file: Old User <old@user.mail> = New User <new@user.mail>
+**Usage:** `gitrw contributor rewrite`
 
 
 
@@ -73,12 +66,13 @@ Allows to rewrite contributors
 
 Remove files and whole directories from the repository
 
-**Usage:** `gitrw remove <--file <FILE>|--directory <DIRECTORY>>`
+**Usage:** `gitrw remove <--file <FILE>|--directory <DIRECTORY>|--regex <REGEX>>`
 
 ###### **Options:**
 
-* `-f`, `--file <FILE>` — File to remove. Argument can be specified multiple times
-* `-d`, `--directory <DIRECTORY>` — Directory to remove. Argument can be specified multiple times
+* `-f`, `--file <FILE>` — File to remove. The char '*' can be used as a wildcard at the beginning or end. Path can be absolute or relative, depending on if a '/' is present. Argument can be specified multiple times
+* `-d`, `--directory <DIRECTORY>` — Directory to remove. The char '*' can be used as a wildcard at the begining or end. Path can be absolute or relative, depending on if it starts with a '/'. Argument can be specified multiple times
+* `-r`, `--regex <REGEX>` — Regex to remove files. Matches on the whole path including the filename, which makes it a little more expensive than the file or directory options. Argument can be specified multiple times
 
 
 
@@ -88,4 +82,12 @@ Remove empty commits that are no merge commits
 
 **Usage:** `gitrw prune-empty`
 
+
+
+<hr/>
+
+<small><i>
+    This document was generated automatically by
+    <a href="https://crates.io/crates/clap-markdown"><code>clap-markdown</code></a>.
+</i></small>
 
